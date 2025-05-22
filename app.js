@@ -27,6 +27,7 @@ const messageAdminRoutes = require("./routes/admin/messageAdmin");
 
 const allowedOrigins = [
   "http://localhost:3000", // client
+  "https://client-asm3-gli2gylv6-hau-nguyens-projects-2ebe7b1e.vercel.app/",
   "http://localhost:3001", // admin
 ];
 
