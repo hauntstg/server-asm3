@@ -59,9 +59,9 @@ exports.logout = (req, res, next) => {
 
 // Lấy thông tin người dùng
 exports.getProfile = async (req, res, next) => {
-  if (!req.session.userId) {
-    return res.status(401).json({ message: "Chưa đăng nhập" });
-  }
+  // if (!req.session.userId) {
+  //   return res.status(401).json({ message: "Chưa đăng nhập" });
+  // }
 
   const user = await User.findById(req.session.userId).populate(
     "cart.productId"
