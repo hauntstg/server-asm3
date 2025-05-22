@@ -40,7 +40,7 @@ exports.signin = async (req, res, next) => {
   if (!match) {
     return res.status(401).json({ message: "Mật khẩu không chính xác" });
   }
-  // req.session.userId = user._id;
+  req.session.userId = user._id;
   // res.status(200).json({ message: "Đăng nhập thành công", data: user });
   req.session.save((err) => {
     if (err) {
@@ -59,9 +59,9 @@ exports.logout = (req, res, next) => {
 
 // Lấy thông tin người dùng
 exports.getProfile = async (req, res, next) => {
-  // if (!req.session.userId) {
-  //   return res.status(401).json({ message: "Chưa đăng nhập" });
-  // }
+  if (!req.session.userId) {
+    return res.status(401).json({ message: "Chưa đăng nhập" });
+  }
 
   const user = await User.findById(req.session.userId).populate(
     "cart.productId"

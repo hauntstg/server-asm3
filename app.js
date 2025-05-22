@@ -28,19 +28,20 @@ const messageAdminRoutes = require("./routes/admin/messageAdmin");
 const allowedOrigins = [
   "http://localhost:3000", // client
   "https://client-asm3-gli2gylv6-hau-nguyens-projects-2ebe7b1e.vercel.app",
+  "https://client-asm3-pi.vercel.app",
   "http://localhost:3001", // admin
   "https://admin-asm3-theta.vercel.app",
 ];
 
 app.use(
   cors({
-    // origin: function (origin, callback) {
-    //   if (!origin || allowedOrigins.includes(origin)) {
-    //     callback(null, true);
-    //   } else {
-    //     callback(new Error("Not allowed by CORS"));
-    //   }
-    // },
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true, // Cho phép gửi cookie
   })
 );
