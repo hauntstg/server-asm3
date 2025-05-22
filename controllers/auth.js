@@ -40,7 +40,7 @@ exports.signin = async (req, res, next) => {
   if (!match) {
     return res.status(401).json({ message: "Mật khẩu không chính xác" });
   }
-  req.session.userId = user._id;
+  // req.session.userId = user._id;
   // res.status(200).json({ message: "Đăng nhập thành công", data: user });
   req.session.save((err) => {
     if (err) {
