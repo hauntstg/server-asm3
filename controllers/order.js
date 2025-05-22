@@ -14,14 +14,7 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
-  auth: {
-    clientId:
-      "280066269512-5cklkjiu44lk71qo7n0jrp211ktipvl3.apps.googleusercontent.com",
-    clientSecret: "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",
-    apiKey: "AIzaSyAl6Fiv3VFhFeeVEOcwDVg70ZKwhiDC9BQ",
-    user: "nthau.it96@gmail.com",
-    pass: "jlltrypmtsmcvapw",
-  },
+  auth: {},
 });
 
 exports.postOrder = async (req, res, next) => {
