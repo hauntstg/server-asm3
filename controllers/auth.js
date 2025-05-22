@@ -41,7 +41,13 @@ exports.signin = async (req, res, next) => {
     return res.status(401).json({ message: "Mật khẩu không chính xác" });
   }
   req.session.userId = user._id;
-  res.status(200).json({ message: "Đăng nhập thành công", data: user });
+  // res.status(200).json({ message: "Đăng nhập thành công", data: user });
+  req.session.save((err) => {
+    if (err) {
+      return res.status(500).json({ message: "Lỗi tạo session" });
+    }
+    res.status(200).json({ message: "Đăng nhập thành công", data: user });
+  });
 };
 
 exports.logout = (req, res, next) => {
