@@ -25,6 +25,7 @@ const historyAdminRoutes = require("./routes/admin/historyAdmin");
 const productAdminRoutes = require("./routes/admin/productAdmin");
 const messageAdminRoutes = require("./routes/admin/messageAdmin");
 
+app.set("trust proxy", 1);
 const allowedOrigins = [
   "http://localhost:3000", // client
   "https://client-asm3-gli2gylv6-hau-nguyens-projects-2ebe7b1e.vercel.app",
