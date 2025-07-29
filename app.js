@@ -8,12 +8,12 @@ const bodyParser = require("body-parser");
 const http = require("http");
 const socketModule = require("./socket");
 const socketHandlers = require("./sockets/socketHandlers");
+require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_URI =
-  "mongodb+srv://nthauit96:MxssdtqaZQ2noerN@cluster0.bs1do.mongodb.net/asm03";
+const db = process.env.MONGODB_URI;
 const app = express();
-const store = new MongoDBStore({ uri: MONGODB_URI, collection: "sessions" });
+const store = new MongoDBStore({ uri: db, collection: "sessions" });
 
 const authRoutes = require("./routes/auth");
 const homeRoutes = require("./routes/home");
@@ -66,8 +66,8 @@ app.use(
     store: store,
     cookie: {
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: false,
+      sameSite: "lax",
       maxAge: 1000 * 60 * 60,
     },
   })
@@ -84,7 +84,7 @@ app.use(productAdminRoutes);
 app.use(messageAdminRoutes);
 
 mongoose
-  .connect(MONGODB_URI)
+  .connect(db)
   .then((result) => {
     server.listen(PORT, () => {
       console.log("🚀 Server is running at http://localhost:5000");

@@ -6,6 +6,7 @@ const nodemailer = require("nodemailer");
 const Order = require("../models/order");
 const Product = require("../models/product");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 // const emailTemplatePath = path.join(__dirname, "../utils/email-template.ejs");
 // let template = fs.readFileSync(emailTemplatePath, "utf8");
@@ -14,7 +15,10 @@ const transporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
-  auth: {},
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
+  },
 });
 
 exports.postOrder = async (req, res, next) => {
