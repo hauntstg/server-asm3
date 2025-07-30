@@ -24,6 +24,8 @@ module.exports = {
           const allowedOrigins = [
             "http://localhost:3000",
             "http://localhost:3001",
+            "https://client-asm3-pi.vercel.app",
+            "https://admin-asm3-theta.vercel.app",
           ];
           if (!origin || allowedOrigins.includes(origin)) {
             callback(null, true);
